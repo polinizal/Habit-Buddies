@@ -22,7 +22,7 @@ IsEnabled: A flag indicating whether the reminder is currently enabled.*/
         public int NotificationId { get; set; }
 
         public string Description { get; set; }
-
+        public string Title { get; set; }
         public int HabitId { get; set; }
 
         public int UserId { get; set; }
