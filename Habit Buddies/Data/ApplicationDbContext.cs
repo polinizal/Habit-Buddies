@@ -8,6 +8,10 @@ namespace Habit_Buddies.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            
         }
+
+        public DbSet<Habit> Habit { get; set; }
+        public DbSet<Notification> Notification { get; set; }
     }
 }
