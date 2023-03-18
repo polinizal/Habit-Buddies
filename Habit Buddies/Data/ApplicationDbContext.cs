@@ -14,10 +14,18 @@ namespace Habit_Buddies.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure StudentId as FK for StudentAddress
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Habit>()
-                        .HasRequired(h => h.Notification)
-                        .WithRequiredPrincipal(n => n.Habit);
+                .HasMany(h => h.Notifications)
+                .WithOne(n => n.Habit)
+                .HasForeignKey(n => n.HabitId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Habit)
+                .WithMany(h => h.Notifications)
+                .OnDelete(DeleteBehavior.NoAction);
+
         }
         public DbSet<Habit> Habit { get; set; }
         public DbSet<Notification> Notification { get; set; }
