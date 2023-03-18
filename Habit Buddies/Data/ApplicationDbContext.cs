@@ -1,4 +1,4 @@
-﻿using Habit_Buddies.Models;
+﻿using Habit_Buddies.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
