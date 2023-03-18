@@ -1,4 +1,4 @@
-﻿namespace Habit_Buddies.Models
+﻿namespace Habit_Buddies.Data.Entities
 {
     public class Notification
     {
