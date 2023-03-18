@@ -4,6 +4,7 @@ using Habit_Buddies.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Habit_Buddies.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230318074400_Notifications")]
+    partial class Notifications
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +55,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasKey("HabitId");
 
-                    b.ToTable("Habit", (string)null);
+                    b.ToTable("Habit");
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Notification", b =>
@@ -86,7 +88,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasKey("NotificationId");
 
-                    b.ToTable("Notification", (string)null);
+                    b.ToTable("Notification");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
