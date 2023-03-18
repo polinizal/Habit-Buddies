@@ -1,4 +1,6 @@
-﻿namespace Habit_Buddies.Data.Entities
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace Habit_Buddies.Data.Entities
 {
     public class Notification
     {
@@ -23,14 +25,14 @@ IsEnabled: A flag indicating whether the reminder is currently enabled.*/
 
         public string Description { get; set; }
         public string Title { get; set; }
-        public int HabitId { get; set; }
 
-        public int UserId { get; set; }
-
+        public string UserId { get; set; }
+        public virtual IdentityUser? User { get; set; }
         public DateTime NotificationTime { get; set; }
 
         public bool IsEnabled { get; set; }
-
+        public int HabitId { get; set; }
+        public virtual Habit Habit { get; set; }
 
 
 

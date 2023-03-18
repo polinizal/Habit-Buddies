@@ -1,4 +1,7 @@
-﻿namespace Habit_Buddies.Data.Entities
+﻿using Microsoft.AspNetCore.Identity;
+using System.Xml.Linq;
+
+namespace Habit_Buddies.Data.Entities
 {
     public class Habit
     {
@@ -25,14 +28,14 @@ ReminderTime: The time at which the user should be reminded to perform the habit
 IsCompleted: A flag indicating whether the user has completed the habit for the current day/week.*/
         public Habit()
         {
-            
+            Notifications = new HashSet<Notification>();
         }
         public int HabitId { get; set; }
 
         public int UserId { get; set; }
 
         public string Title { get; set; }
-
+        public virtual IdentityUser? User { get; set; }
         public string Description { get; set; }
 
         public string Goal { get; set; }
@@ -41,7 +44,7 @@ IsCompleted: A flag indicating whether the user has completed the habit for the 
 
         public bool IsCompleted { get; set; }
 
-
+        public virtual ICollection<Notification> Notifications { get; set; }
 
     }
 }

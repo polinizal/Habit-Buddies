@@ -12,20 +12,13 @@ namespace Habit_Buddies.Data
         {
             
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //    modelBuilder.Entity<Habit>()
-        //        .HasOne(h => h.Notification)
-        //        .WithOne(c => c.Post)
-        //        .HasForeignKey(c => c.PostId)
-        //        .OnDelete(DeleteBehavior.Cascade);
-
-        //    modelBuilder.Entity<Comment>()
-        //        .HasOne(c => c.Post)
-        //        .WithMany(p => p.Comments)
-        //        .OnDelete(DeleteBehavior.NoAction);
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Configure StudentId as FK for StudentAddress
+            modelBuilder.Entity<Habit>()
+                        .HasRequired(h => h.Notification)
+                        .WithRequiredPrincipal(n => n.Habit);
+        }
         public DbSet<Habit> Habit { get; set; }
         public DbSet<Notification> Notification { get; set; }
     }
