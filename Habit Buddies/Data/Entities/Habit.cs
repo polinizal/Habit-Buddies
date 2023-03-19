@@ -35,7 +35,7 @@ IsCompleted: A flag indicating whether the user has completed the habit for the 
         public string UserId { get; set; }
 
         public string Title { get; set; }
-        public virtual IdentityUser? User { get; set; }
+        public virtual User? User { get; set; }
         public string Description { get; set; }
 
         public string Goal { get; set; }
