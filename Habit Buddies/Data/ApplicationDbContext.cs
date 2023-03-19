@@ -26,6 +26,7 @@ namespace Habit_Buddies.Data
                 .WithMany(h => h.Notifications)
                 .OnDelete(DeleteBehavior.NoAction);
 
+
         }
         public DbSet<Habit> Habit { get; set; }
         public DbSet<Notification> Notification { get; set; }
