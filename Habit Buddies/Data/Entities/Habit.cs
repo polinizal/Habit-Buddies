@@ -44,7 +44,6 @@ IsCompleted: A flag indicating whether the user has completed the habit for the 
 
         public bool IsCompleted { get; set; }
 
-        public int NotificationId { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
 
     }
