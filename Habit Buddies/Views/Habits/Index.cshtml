@@ -30,9 +30,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.IsCompleted)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NotificationId)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -56,9 +53,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsCompleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NotificationId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.HabitId">Edit</a> |

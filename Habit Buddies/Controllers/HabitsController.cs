@@ -48,7 +48,7 @@ namespace Habit_Buddies.Controllers
         // GET: Habits/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace Habit_Buddies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HabitId,UserId,Title,Description,Goal,StartDate,IsCompleted,NotificationId")] Habit habit)
+        public async Task<IActionResult> Create([Bind("HabitId,UserId,Title,Description,Goal,StartDate,IsCompleted")] Habit habit)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace Habit_Buddies.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", habit.UserId);
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", habit.UserId);
             return View(habit);
         }
 
@@ -82,7 +82,7 @@ namespace Habit_Buddies.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", habit.UserId);
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", habit.UserId);
             return View(habit);
         }
 
@@ -91,7 +91,7 @@ namespace Habit_Buddies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HabitId,UserId,Title,Description,Goal,StartDate,IsCompleted,NotificationId")] Habit habit)
+        public async Task<IActionResult> Edit(int id, [Bind("HabitId,UserId,Title,Description,Goal,StartDate,IsCompleted")] Habit habit)
         {
             if (id != habit.HabitId)
             {
@@ -118,7 +118,7 @@ namespace Habit_Buddies.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", habit.UserId);
+            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", habit.UserId);
             return View(habit);
         }
 
