@@ -46,5 +46,6 @@ namespace Habit_Buddies.Data
 
         public DbSet<Friend> Friend { get; set; }
         public DbSet<Notification> Friendship { get; set; }
+        public DbSet<Habit_Buddies.Data.Entities.FriendshipList>? FriendshipList { get; set; }
     }
 }
