@@ -33,19 +33,14 @@ namespace Habit_Buddies.Data
                 .WithMany(h => h.Notifications)
                 .OnDelete(DeleteBehavior.NoAction);
 
-
-            modelBuilder.Entity<Friend>(b =>
-            {
-                b.HasKey(x => new { x.FriendshipListId, x.FriendUserId });
-            });
-
+            modelBuilder.Entity<UserFriend>()
+                .HasKey(uf => new { uf.UserId, uf.FriendId });
 
         }
-        public DbSet<Habit> Habit { get; set; }
-        public DbSet<Notification> Notification { get; set; }
-
-        public DbSet<Friend> Friend { get; set; }
-        public DbSet<Notification> Friendship { get; set; }
-        public DbSet<Habit_Buddies.Data.Entities.FriendshipList>? FriendshipList { get; set; }
+        public DbSet<Habit> Habits { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Friend> Friends { get; set; }
+        public DbSet<UserFriend> UserFriends { get; set; }
     }
 }

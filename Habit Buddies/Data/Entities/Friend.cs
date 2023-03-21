@@ -2,10 +2,7 @@
 {
     public class Friend
     {
-        public int FriendshipListId { get; set; }
-        public virtual FriendshipList? FriendshipList { get; set; }
-
-        public int FriendUserId { get; set; }
-        public virtual User? FriendUser { get; set; }
+        public int FriendId { get; set; }
+        public virtual ICollection<UserFriend> UserFriends { get; set; }
     }
 }
