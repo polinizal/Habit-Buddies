@@ -27,12 +27,12 @@ IsEnabled: A flag indicating whether the reminder is currently enabled.*/
         public string Title { get; set; }
 
         public string UserId { get; set; }
-        public virtual IdentityUser? User { get; set; }
+        public virtual User? User { get; set; }
         public DateTime NotificationTime { get; set; }
 
         public bool IsEnabled { get; set; }
         public int HabitId { get; set; }
-        public virtual Habit Habit { get; set; }
+        public virtual Habit? Habit { get; set; }
 
 
 
