@@ -88,43 +88,43 @@ namespace Habit_Buddies
 
             app.Run();
         }
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Add identity
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<ApplicationDbContext>()
-                    .AddDefaultTokenProviders();
+        //public void ConfigureServices(IServiceCollection services)
+        //{
+        //    // Add identity
+        //    services.AddIdentity<IdentityUser, IdentityRole>()
+        //            .AddEntityFrameworkStores<ApplicationDbContext>()
+        //            .AddDefaultTokenProviders();
 
-            // Add authentication
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            })
-            .AddCookie(options =>
-            {
-                options.LoginPath = "/Account/Login";
-                options.LogoutPath = "/Account/Logout";
-                options.AccessDeniedPath = "/Account/AccessDenied";
-            });
+        //    // Add authentication
+        //    services.AddAuthentication(options =>
+        //    {
+        //        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        //        options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        //    })
+        //    .AddCookie(options =>
+        //    {
+        //        options.LoginPath = "/Account/Login";
+        //        options.LogoutPath = "/Account/Logout";
+        //        options.AccessDeniedPath = "/Account/AccessDenied";
+        //    });
 
-            // Add MVC
-            services.AddControllersWithViews();
-        }
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            // Use authentication
-            app.UseAuthentication();
+        //    // Add MVC
+        //    services.AddControllersWithViews();
+        //}
+        //public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        //{
+        //    // Use authentication
+        //    app.UseAuthentication();
 
-            // Use MVC
-            app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
+        //    // Use MVC
+        //    app.UseRouting();
+        //    app.UseEndpoints(endpoints =>
+        //    {
+        //        endpoints.MapControllerRoute(
+        //            name: "default",
+        //            pattern: "{controller=Home}/{action=Index}/{id?}");
+        //    });
+        //}
 
     }
 }
