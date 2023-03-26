@@ -10,90 +10,87 @@ using Habit_Buddies.Data.Entities;
 
 namespace Habit_Buddies.Controllers
 {
-    public class FriendshipListsController : Controller
+    public class FakeFriendsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public FriendshipListsController(ApplicationDbContext context)
+        public FakeFriendsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: FriendshipLists
+        // GET: FakeFriends
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.FriendshipList.Include(f => f.User);
-            return View(await applicationDbContext.ToListAsync());
+              return _context.FakeFriends != null ? 
+                          View(await _context.FakeFriends.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.FakeFriends'  is null.");
         }
 
-        // GET: FriendshipLists/Details/5
+        // GET: FakeFriends/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.FriendshipList == null)
+            if (id == null || _context.FakeFriends == null)
             {
                 return NotFound();
             }
 
-            var friendshipList = await _context.FriendshipList
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (friendshipList == null)
+            var fakeFriend = await _context.FakeFriends
+                .FirstOrDefaultAsync(m => m.FakeFriendId == id);
+            if (fakeFriend == null)
             {
                 return NotFound();
             }
 
-            return View(friendshipList);
+            return View(fakeFriend);
         }
 
-        // GET: FriendshipLists/Create
+        // GET: FakeFriends/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id");
             return View();
         }
 
-        // POST: FriendshipLists/Create
+        // POST: FakeFriends/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId")] FriendshipList friendshipList)
+        public async Task<IActionResult> Create([Bind("FakeFriendId,FriendName,FriendRank")] FakeFriend fakeFriend)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(friendshipList);
+                _context.Add(fakeFriend);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", friendshipList.UserId);
-            return View(friendshipList);
+            return View(fakeFriend);
         }
 
-        // GET: FriendshipLists/Edit/5
+        // GET: FakeFriends/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.FriendshipList == null)
+            if (id == null || _context.FakeFriends == null)
             {
                 return NotFound();
             }
 
-            var friendshipList = await _context.FriendshipList.FindAsync(id);
-            if (friendshipList == null)
+            var fakeFriend = await _context.FakeFriends.FindAsync(id);
+            if (fakeFriend == null)
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", friendshipList.UserId);
-            return View(friendshipList);
+            return View(fakeFriend);
         }
 
-        // POST: FriendshipLists/Edit/5
+        // POST: FakeFriends/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId")] FriendshipList friendshipList)
+        public async Task<IActionResult> Edit(int id, [Bind("FakeFriendId,FriendName,FriendRank")] FakeFriend fakeFriend)
         {
-            if (id != friendshipList.Id)
+            if (id != fakeFriend.FakeFriendId)
             {
                 return NotFound();
             }
@@ -102,12 +99,12 @@ namespace Habit_Buddies.Controllers
             {
                 try
                 {
-                    _context.Update(friendshipList);
+                    _context.Update(fakeFriend);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FriendshipListExists(friendshipList.Id))
+                    if (!FakeFriendExists(fakeFriend.FakeFriendId))
                     {
                         return NotFound();
                     }
@@ -118,51 +115,49 @@ namespace Habit_Buddies.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", friendshipList.UserId);
-            return View(friendshipList);
+            return View(fakeFriend);
         }
 
-        // GET: FriendshipLists/Delete/5
+        // GET: FakeFriends/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.FriendshipList == null)
+            if (id == null || _context.FakeFriends == null)
             {
                 return NotFound();
             }
 
-            var friendshipList = await _context.FriendshipList
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (friendshipList == null)
+            var fakeFriend = await _context.FakeFriends
+                .FirstOrDefaultAsync(m => m.FakeFriendId == id);
+            if (fakeFriend == null)
             {
                 return NotFound();
             }
 
-            return View(friendshipList);
+            return View(fakeFriend);
         }
 
-        // POST: FriendshipLists/Delete/5
+        // POST: FakeFriends/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.FriendshipList == null)
+            if (_context.FakeFriends == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.FriendshipList'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.FakeFriends'  is null.");
             }
-            var friendshipList = await _context.FriendshipList.FindAsync(id);
-            if (friendshipList != null)
+            var fakeFriend = await _context.FakeFriends.FindAsync(id);
+            if (fakeFriend != null)
             {
-                _context.FriendshipList.Remove(friendshipList);
+                _context.FakeFriends.Remove(fakeFriend);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FriendshipListExists(int id)
+        private bool FakeFriendExists(int id)
         {
-          return (_context.FriendshipList?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.FakeFriends?.Any(e => e.FakeFriendId == id)).GetValueOrDefault();
         }
     }
 }

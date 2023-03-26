@@ -22,19 +22,19 @@ namespace Habit_Buddies.Controllers
         // GET: Notifications
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Notification.Include(n => n.Habit).Include(n => n.User);
+            var applicationDbContext = _context.Notifications.Include(n => n.Habit).Include(n => n.User);
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Notifications/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Notification == null)
+            if (id == null || _context.Notifications == null)
             {
                 return NotFound();
             }
 
-            var notification = await _context.Notification
+            var notification = await _context.Notifications
                 .Include(n => n.Habit)
                 .Include(n => n.User)
                 .FirstOrDefaultAsync(m => m.NotificationId == id);
@@ -49,7 +49,7 @@ namespace Habit_Buddies.Controllers
         // GET: Notifications/Create
         public IActionResult Create()
         {
-            ViewData["HabitId"] = new SelectList(_context.Habit, "HabitId", "HabitId");
+            ViewData["HabitId"] = new SelectList(_context.Habits, "HabitId", "HabitId");
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
@@ -67,7 +67,7 @@ namespace Habit_Buddies.Controllers
                 await _context.SaveChangesAsync();
                 return Redirect("https://localhost:7017/Habits");
             }
-            ViewData["HabitId"] = new SelectList(_context.Habit, "HabitId", "HabitId", notification.HabitId);
+            ViewData["HabitId"] = new SelectList(_context.Habits, "HabitId", "HabitId", notification.HabitId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", notification.UserId);
             return View(notification);
         }
@@ -75,17 +75,17 @@ namespace Habit_Buddies.Controllers
         // GET: Notifications/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Notification == null)
+            if (id == null || _context.Notifications == null)
             {
                 return NotFound();
             }
 
-            var notification = await _context.Notification.FindAsync(id);
+            var notification = await _context.Notifications.FindAsync(id);
             if (notification == null)
             {
                 return NotFound();
             }
-            ViewData["HabitId"] = new SelectList(_context.Habit, "HabitId", "HabitId", notification.HabitId);
+            ViewData["HabitId"] = new SelectList(_context.Habits, "HabitId", "HabitId", notification.HabitId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", notification.UserId);
             return View(notification);
         }
@@ -122,7 +122,7 @@ namespace Habit_Buddies.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HabitId"] = new SelectList(_context.Habit, "HabitId", "HabitId", notification.HabitId);
+            ViewData["HabitId"] = new SelectList(_context.Habits, "HabitId", "HabitId", notification.HabitId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", notification.UserId);
             return View(notification);
         }
@@ -130,12 +130,12 @@ namespace Habit_Buddies.Controllers
         // GET: Notifications/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Notification == null)
+            if (id == null || _context.Notifications == null)
             {
                 return NotFound();
             }
 
-            var notification = await _context.Notification
+            var notification = await _context.Notifications
                 .Include(n => n.Habit)
                 .Include(n => n.User)
                 .FirstOrDefaultAsync(m => m.NotificationId == id);
@@ -152,14 +152,14 @@ namespace Habit_Buddies.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Notification == null)
+            if (_context.Notifications == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Notification'  is null.");
             }
-            var notification = await _context.Notification.FindAsync(id);
+            var notification = await _context.Notifications.FindAsync(id);
             if (notification != null)
             {
-                _context.Notification.Remove(notification);
+                _context.Notifications.Remove(notification);
             }
             
             await _context.SaveChangesAsync();
@@ -168,7 +168,7 @@ namespace Habit_Buddies.Controllers
 
         private bool NotificationExists(int id)
         {
-          return (_context.Notification?.Any(e => e.NotificationId == id)).GetValueOrDefault();
+          return (_context.Notifications?.Any(e => e.NotificationId == id)).GetValueOrDefault();
         }
     }
 }

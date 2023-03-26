@@ -22,19 +22,19 @@ namespace Habit_Buddies.Controllers
         // GET: Habits
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Habit.Include(h => h.User);
+            var applicationDbContext = _context.Habits.Include(h => h.User);
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Habits/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Habit == null)
+            if (id == null || _context.Habits == null)
             {
                 return NotFound();
             }
 
-            var habit = await _context.Habit
+            var habit = await _context.Habits
                 .Include(h => h.User)
                 .FirstOrDefaultAsync(m => m.HabitId == id);
             if (habit == null)
@@ -73,12 +73,12 @@ namespace Habit_Buddies.Controllers
         // GET: Habits/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Habit == null)
+            if (id == null || _context.Habits == null)
             {
                 return NotFound();
             }
 
-            var habit = await _context.Habit.FindAsync(id);
+            var habit = await _context.Habits.FindAsync(id);
             if (habit == null)
             {
                 return NotFound();
@@ -126,12 +126,12 @@ namespace Habit_Buddies.Controllers
         // GET: Habits/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Habit == null)
+            if (id == null || _context.Habits == null)
             {
                 return NotFound();
             }
 
-            var habit = await _context.Habit
+            var habit = await _context.Habits
                 .Include(h => h.User)
                 .FirstOrDefaultAsync(m => m.HabitId == id);
             if (habit == null)
@@ -147,14 +147,14 @@ namespace Habit_Buddies.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Habit == null)
+            if (_context.Habits == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Habit'  is null.");
             }
-            var habit = await _context.Habit.FindAsync(id);
+            var habit = await _context.Habits.FindAsync(id);
             if (habit != null)
             {
-                _context.Habit.Remove(habit);
+                _context.Habits.Remove(habit);
             }
             
             await _context.SaveChangesAsync();
@@ -163,7 +163,7 @@ namespace Habit_Buddies.Controllers
 
         private bool HabitExists(int id)
         {
-          return (_context.Habit?.Any(e => e.HabitId == id)).GetValueOrDefault();
+          return (_context.Habits?.Any(e => e.HabitId == id)).GetValueOrDefault();
         }
     }
 }
