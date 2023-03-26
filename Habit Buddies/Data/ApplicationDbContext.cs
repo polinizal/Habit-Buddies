@@ -34,13 +34,14 @@ namespace Habit_Buddies.Data
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<UserFriend>()
-                .HasKey(uf => new { uf.UserId, uf.FriendId });
+                .HasKey(uf => new { uf.UserId, uf.FakeFriendId });
+
 
         }
         public DbSet<Habit> Habits { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Friend> Friends { get; set; }
+        public DbSet<FakeFriend> FakeFriends { get; set; }
         public DbSet<UserFriend> UserFriends { get; set; }
     }
 }
