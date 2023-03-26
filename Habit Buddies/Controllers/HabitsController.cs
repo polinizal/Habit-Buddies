@@ -63,10 +63,11 @@ namespace Habit_Buddies.Controllers
             {
                 _context.Add(habit);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Redirect("https://localhost:7017/Notifications/Create");
             }
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Id", habit.UserId);
             return View(habit);
+
         }
 
         // GET: Habits/Edit/5

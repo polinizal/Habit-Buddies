@@ -65,7 +65,7 @@ namespace Habit_Buddies.Controllers
             {
                 _context.Add(notification);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Redirect("https://localhost:7017/Habits");
             }
             ViewData["HabitId"] = new SelectList(_context.Habit, "HabitId", "HabitId", notification.HabitId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", notification.UserId);
