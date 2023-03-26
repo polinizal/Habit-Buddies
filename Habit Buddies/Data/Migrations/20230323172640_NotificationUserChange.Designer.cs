@@ -4,6 +4,7 @@ using Habit_Buddies.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Habit_Buddies.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230323172640_NotificationUserChange")]
+    partial class NotificationUserChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,29 +24,42 @@ namespace Habit_Buddies.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Habit_Buddies.Data.Entities.FakeFriend", b =>
+            modelBuilder.Entity("Habit_Buddies.Data.Entities.Friend", b =>
                 {
+                    b.Property<int>("FriendshipListId")
+                        .HasColumnType("int");
 
-                    b.Property<int>("FakeFriendId")
+                    b.Property<int>("FriendUserId")
+                        .HasColumnType("int");
 
+                    b.Property<string>("FriendUserId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("FriendshipListId", "FriendUserId");
+
+                    b.HasIndex("FriendUserId1");
+
+                    b.ToTable("Friend");
+                });
+
+            modelBuilder.Entity("Habit_Buddies.Data.Entities.FriendshipList", b =>
+                {
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FakeFriendId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("FriendName")
+                    b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("FriendRank")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
 
-                    b.HasKey("FakeFriendId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
-
-                    b.ToTable("FakeFriends");
-
+                    b.ToTable("FriendshipList");
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Habit", b =>
@@ -81,9 +96,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserId");
 
-
-                    b.ToTable("Habits");
-
+                    b.ToTable("Habit");
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Notification", b =>
@@ -121,24 +134,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserId");
 
-
-                    b.ToTable("Notifications");
-                });
-
-            modelBuilder.Entity("Habit_Buddies.Data.Entities.UserFriend", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("FakeFriendId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "FakeFriendId");
-
-                    b.HasIndex("FakeFriendId");
-
-                    b.ToTable("UserFriends");
-
+                    b.ToTable("Notification");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -356,6 +352,34 @@ namespace Habit_Buddies.Data.Migrations
                     b.HasDiscriminator().HasValue("User");
                 });
 
+            modelBuilder.Entity("Habit_Buddies.Data.Entities.Friend", b =>
+                {
+                    b.HasOne("Habit_Buddies.Data.Entities.User", "FriendUser")
+                        .WithMany()
+                        .HasForeignKey("FriendUserId1");
+
+                    b.HasOne("Habit_Buddies.Data.Entities.FriendshipList", "FriendshipList")
+                        .WithMany("Friends")
+                        .HasForeignKey("FriendshipListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FriendUser");
+
+                    b.Navigation("FriendshipList");
+                });
+
+            modelBuilder.Entity("Habit_Buddies.Data.Entities.FriendshipList", b =>
+                {
+                    b.HasOne("Habit_Buddies.Data.Entities.User", "User")
+                        .WithOne("FriendshipList")
+                        .HasForeignKey("Habit_Buddies.Data.Entities.FriendshipList", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Habit", b =>
                 {
                     b.HasOne("Habit_Buddies.Data.Entities.User", "User")
@@ -382,25 +406,6 @@ namespace Habit_Buddies.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Habit");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Habit_Buddies.Data.Entities.UserFriend", b =>
-                {
-                    b.HasOne("Habit_Buddies.Data.Entities.FakeFriend", "FakeFriend")
-                        .WithMany("UserFriends")
-                        .HasForeignKey("FakeFriendId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Habit_Buddies.Data.Entities.User", "User")
-                        .WithMany("UserFriends")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FakeFriend");
 
                     b.Navigation("User");
                 });
@@ -456,9 +461,9 @@ namespace Habit_Buddies.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Habit_Buddies.Data.Entities.FakeFriend", b =>
+            modelBuilder.Entity("Habit_Buddies.Data.Entities.FriendshipList", b =>
                 {
-                    b.Navigation("UserFriends");
+                    b.Navigation("Friends");
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Habit", b =>
@@ -468,9 +473,10 @@ namespace Habit_Buddies.Data.Migrations
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.User", b =>
                 {
-                    b.Navigation("Habits");
+                    b.Navigation("FriendshipList")
+                        .IsRequired();
 
-                    b.Navigation("UserFriends");
+                    b.Navigation("Habits");
                 });
 #pragma warning restore 612, 618
         }

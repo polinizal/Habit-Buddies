@@ -2,7 +2,7 @@
 
 namespace Habit_Buddies.Data.Entities
 {
-    public class User:IdentityUser
+    public class User: IdentityUser
     {
         public User()
         {
