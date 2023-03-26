@@ -62,7 +62,7 @@ namespace Habit_Buddies.Data
                      }
                 };
 
-                if (!applicationDbContext.Habit.Any())
+                if (!applicationDbContext.Habits.Any())
                 {
                     var habits = new List<Habit>()
                 {
@@ -112,7 +112,7 @@ namespace Habit_Buddies.Data
                       }
                             };
 
-                    if (!applicationDbContext.Notification.Any())
+                    if (!applicationDbContext.Notifications.Any())
                     {
                         var notifications = new List<Notification>()
                         {
