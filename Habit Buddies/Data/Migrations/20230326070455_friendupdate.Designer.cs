@@ -4,6 +4,7 @@ using Habit_Buddies.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Habit_Buddies.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230326070455_friendupdate")]
+    partial class friendupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,9 +26,7 @@ namespace Habit_Buddies.Data.Migrations
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.FakeFriend", b =>
                 {
-
                     b.Property<int>("FakeFriendId")
-
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -42,9 +42,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasKey("FakeFriendId");
 
-
                     b.ToTable("FakeFriends");
-
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Habit", b =>
@@ -81,9 +79,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserId");
 
-
                     b.ToTable("Habits");
-
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Notification", b =>
@@ -121,7 +117,6 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserId");
 
-
                     b.ToTable("Notifications");
                 });
 
@@ -138,7 +133,6 @@ namespace Habit_Buddies.Data.Migrations
                     b.HasIndex("FakeFriendId");
 
                     b.ToTable("UserFriends");
-
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -375,7 +369,7 @@ namespace Habit_Buddies.Data.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Habit_Buddies.Data.Entities.User", "User")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
