@@ -12,7 +12,7 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div hidden class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
                 <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
             </div>
@@ -36,14 +36,16 @@
                 <input asp-for="StartDate" class="form-control" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+            <div hidden class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
                 </label>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+            <a href="https://localhost:7017/Notifications/Create">
+                <div class="form-group">
+                    <input type="submit" value="Create Me" class="btn btn-primary" />
+                </div>
+            </a>
         </form>
     </div>
 </div>

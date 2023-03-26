@@ -15,9 +15,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.User)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
@@ -27,9 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.IsCompleted)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -39,9 +39,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
@@ -51,9 +51,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.IsCompleted)
-            </td>
+            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.HabitId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.HabitId">Details</a> |
