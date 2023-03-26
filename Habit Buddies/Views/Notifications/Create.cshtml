@@ -13,25 +13,25 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
                 <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
             </div>
-            <div class="form-group">
+            <div hidden class="form-group">
                 <label asp-for="NotificationTime" class="control-label"></label>
                 <input asp-for="NotificationTime" class="form-control" />
                 <span asp-validation-for="NotificationTime" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+            <div hidden class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsEnabled" /> @Html.DisplayNameFor(model => model.IsEnabled)
                 </label>
