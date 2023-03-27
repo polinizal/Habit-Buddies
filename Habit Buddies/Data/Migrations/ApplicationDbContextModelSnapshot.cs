@@ -24,9 +24,7 @@ namespace Habit_Buddies.Data.Migrations
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.FakeFriend", b =>
                 {
-
                     b.Property<int>("FakeFriendId")
-
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -42,9 +40,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasKey("FakeFriendId");
 
-
-                    b.ToTable("FakeFriends");
-
+                    b.ToTable("FakeFriends", (string)null);
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Habit", b =>
@@ -81,9 +77,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserId");
 
-
-                    b.ToTable("Habits");
-
+                    b.ToTable("Habits", (string)null);
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Notification", b =>
@@ -121,8 +115,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserId");
 
-
-                    b.ToTable("Notifications");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.UserFriend", b =>
@@ -137,8 +130,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("FakeFriendId");
 
-                    b.ToTable("UserFriends");
-
+                    b.ToTable("UserFriends", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -375,7 +367,7 @@ namespace Habit_Buddies.Data.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Habit_Buddies.Data.Entities.User", "User")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
