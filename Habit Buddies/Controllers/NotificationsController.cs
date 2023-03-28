@@ -73,19 +73,23 @@ namespace Habit_Buddies.Controllers
         // Loop through the descriptions and create a new notification for each
         foreach (var description in descriptions)
         {
-            // Create a new notification with the current description
-            var newNotification = new Notification
-            {
-                Description = description,
-                Title = notification.Title,
-                UserId = notification.UserId,
-                NotificationTime = notification.NotificationTime,
-                IsEnabled = notification.IsEnabled,
-                HabitId = notification.HabitId
-            };
+                    if (!string.IsNullOrEmpty(description))
+                    {           // Create a new notification with the current description
+                        var newNotification = new Notification
+                        {
+                            Description = description,
+                            Title = notification.Title,
+                            UserId = notification.UserId,
+                            NotificationTime = notification.NotificationTime,
+                            IsEnabled = notification.IsEnabled,
+                            HabitId = notification.HabitId
+                        };
+                        _context.Add(newNotification);
+                    }
+              
 
             // Add the new notification to the database
-            _context.Add(newNotification);
+           
         }
 
         await _context.SaveChangesAsync();
