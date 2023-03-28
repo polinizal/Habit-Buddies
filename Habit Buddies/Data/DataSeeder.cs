@@ -74,6 +74,7 @@ namespace Habit_Buddies.Data
                         Description = "Read 20 Pages A Day",
                         Goal = "Become A Passionate Reader",
                         StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
                         IsCompleted = false,
 
                     },
@@ -85,6 +86,7 @@ namespace Habit_Buddies.Data
                         Description = "Swim On Monday And Friday",
                         Goal = "Get Fit",
                         StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
                         IsCompleted = false,
 
                     },
@@ -96,6 +98,7 @@ namespace Habit_Buddies.Data
                          Description = "Learn Fundamentals Of Programming",
                          Goal = "Finish Course",
                          StartDate = DateTime.Now,
+                         EndDate = DateTime.Now,
                          IsCompleted = false,
                          //Notifications = new[] {} //ASK BOUT THIS!!!
                      },
@@ -107,6 +110,7 @@ namespace Habit_Buddies.Data
                           Description = "Watch YouTube Videos And Articles About Crypto",
                           Goal = "Invest In Crypto",
                           StartDate = DateTime.Now,
+                          EndDate = DateTime.Now,
                           IsCompleted = false,
                           //Notifications = new[] {} //ASK BOUT THIS!!!
                       }
@@ -283,6 +287,7 @@ namespace Habit_Buddies.Data
 //            Description = "Read 20 Pages A Day",
 //            Goal = "Become A Passionate Reader",
 //            StartDate = DateTime.Now,
+//            EndDate = DateTime.Now,
 //            IsCompleted = false,
 
 //        },
@@ -294,6 +299,7 @@ namespace Habit_Buddies.Data
 //            Description = "Swim On Monday And Friday",
 //            Goal = "Get Fit",
 //            StartDate = DateTime.Now,
+//            EndDate = DateTime.Now,
 //            IsCompleted = false,
 
 //        },
@@ -305,6 +311,7 @@ namespace Habit_Buddies.Data
 //             Description = "Learn Fundamentals Of Programming",
 //             Goal = "Finish Course",
 //             StartDate = DateTime.Now,
+//             EndDate = DateTime.Now,
 //             IsCompleted = false,
 //             //Notifications = new[] {} //ASK BOUT THIS!!!
 //         },
@@ -316,6 +323,7 @@ namespace Habit_Buddies.Data
 //              Description = "Watch YouTube Videos And Articles About Crypto",
 //              Goal = "Invest In Crypto",
 //              StartDate = DateTime.Now,
+//              EndDate = DateTime.Now,
 //              IsCompleted = false,
 //              //Notifications = new[] {} //ASK BOUT THIS!!!
 //          }

@@ -59,7 +59,7 @@ namespace Habit_Buddies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HabitId,UserId,Title,Description,Goal,StartDate,IsCompleted")] Habit habit)
+        public async Task<IActionResult> Create([Bind("HabitId,UserId,Title,Description,Goal,StartDate,EndDate,IsCompleted")] Habit habit)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace Habit_Buddies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HabitId,UserId,Title,Description,Goal,StartDate,IsCompleted")] Habit habit)
+        public async Task<IActionResult> Edit(int id, [Bind("HabitId,UserId,Title,Description,Goal,StartDate,EndDate,IsCompleted")] Habit habit)
         {
             if (id != habit.HabitId)
             {
@@ -168,5 +168,7 @@ namespace Habit_Buddies.Controllers
         {
           return (_context.Habits?.Any(e => e.HabitId == id)).GetValueOrDefault();
         }
+
+        
     }
 }
