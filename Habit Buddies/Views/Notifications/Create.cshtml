@@ -17,20 +17,41 @@
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+            <div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <div class="input-group">
+                        <input asp-for="Description" class="form-control" />
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-secondary float-right" onclick="addDescription()">Plus</button>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                    <div id="description-container"></div>
+                </div>
+                <div class="form-group" id="description2Div" style="display: none;">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" id="description2" name="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group" id="description3Div" style="display: none;">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" id="description3" name="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
             </div>
+            
+
+              
             <div hidden class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
                 <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
             </div>
-            <div hidden class="form-group">
+           @* <div class="form-group">
                 <label asp-for="NotificationTime" class="control-label"></label>
                 <input asp-for="NotificationTime" class="form-control" />
                 <span asp-validation-for="NotificationTime" class="text-danger"></span>
-            </div>
+            </div>*@
             <div hidden class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsEnabled" /> @Html.DisplayNameFor(model => model.IsEnabled)
@@ -53,4 +74,18 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        function addDescription() {
+            var description2Div = document.getElementById('description2Div');
+            var description3Div = document.getElementById('description3Div');
+
+            if (description2Div.style.display === 'none') {
+                description2Div.style.display = 'block';
+            } else if (description3Div.style.display === 'none') {
+                description3Div.style.display = 'block';
+                document.querySelector('.btn').style.display = 'none';
+            }
+        }
+    </script>
 }
