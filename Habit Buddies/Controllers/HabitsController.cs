@@ -168,6 +168,7 @@ namespace Habit_Buddies.Controllers
         {
           return (_context.Habits?.Any(e => e.HabitId == id)).GetValueOrDefault();
         }
+        //When habit is completed apply this method (Last day of the habit)
         public async Task<IActionResult> Complete(int habitId, int userId)
         {
             var habit = await _context.Habits.FindAsync(habitId);
