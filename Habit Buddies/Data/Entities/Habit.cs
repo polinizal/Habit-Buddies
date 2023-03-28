@@ -42,6 +42,8 @@ IsCompleted: A flag indicating whether the user has completed the habit for the 
 
         public DateTime StartDate { get; set; }
 
+        public DateTime EndDate { get; set; }
+
         public bool IsCompleted { get; set; }
 
         public virtual ICollection<Notification> Notifications { get; set; }

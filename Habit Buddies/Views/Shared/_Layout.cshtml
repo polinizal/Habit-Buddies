@@ -22,17 +22,18 @@
         <li class="nav-item">
           <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
             <span class="visually-hidden">(current)</span>
-          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" asp-area="" asp-controller="Habits" asp-action="Index">Habits</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" asp-area="" asp-controller="FakeFriends" asp-action="Index">Friends</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </li>
       </ul>
-      @*<form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>*@
-                    <partial name="_LoginPartial" />
+           <partial name="_LoginPartial" />
     </div>
   </div>
 </nav>
