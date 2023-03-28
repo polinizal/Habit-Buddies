@@ -49,7 +49,8 @@ namespace Habit_Buddies.Controllers
         // GET: Notifications/Create
         public IActionResult Create()
         {
-            ViewData["HabitId"] = new SelectList(_context.Habits, "HabitId", "HabitId");
+            int lastHabitId = _context.Habits.Max(h => h.HabitId); // get the last habit id from the habits table
+            ViewData["HabitId"] = new SelectList(_context.Habits, "HabitId", "HabitId", lastHabitId); // set the last habit id as the default value in the dropdown list
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
@@ -60,17 +61,41 @@ namespace Habit_Buddies.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NotificationId,Description,Title,UserId,NotificationTime,IsEnabled,HabitId")] Notification notification)
+         {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
+        int lastHabitId = await _context.Habits.Select(h => h.HabitId).MaxAsync(); // get the last habit id from the habits table
+        notification.HabitId = lastHabitId; // set the HabitId of the new notification to the last HabitId in _context.Habits
+
+        // Get the descriptions from the request form
+        var descriptions = HttpContext.Request.Form["Description"];
+
+        // Loop through the descriptions and create a new notification for each
+        foreach (var description in descriptions)
+        {
+            // Create a new notification with the current description
+            var newNotification = new Notification
             {
-                _context.Add(notification);
-                await _context.SaveChangesAsync();
-                return Redirect("https://localhost:7017/Habits");
-            }
-            ViewData["HabitId"] = new SelectList(_context.Habits, "HabitId", "HabitId", notification.HabitId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", notification.UserId);
-            return View(notification);
+                Description = description,
+                Title = notification.Title,
+                UserId = notification.UserId,
+                NotificationTime = notification.NotificationTime,
+                IsEnabled = notification.IsEnabled,
+                HabitId = notification.HabitId
+            };
+
+            // Add the new notification to the database
+            _context.Add(newNotification);
         }
+
+        await _context.SaveChangesAsync();
+        return Redirect("https://localhost:7017/Habits");
+    }
+
+    ViewData["HabitId"] = new SelectList(_context.Habits, "HabitId", "HabitId", notification.HabitId);
+    ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", notification.UserId);
+    return View(notification);
+}
 
         // GET: Notifications/Edit/5
         public async Task<IActionResult> Edit(int? id)
