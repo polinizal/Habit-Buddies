@@ -24,27 +24,21 @@ namespace Habit_Buddies.Data.Migrations
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.FakeFriend", b =>
                 {
-
                     b.Property<int>("FakeFriendId")
-
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FakeFriendId"), 1L, 1);
 
                     b.Property<string>("FriendName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FriendRank")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FakeFriendId");
 
-
                     b.ToTable("FakeFriends");
-
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Habit", b =>
@@ -81,9 +75,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserId");
 
-
                     b.ToTable("Habits");
-
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Notification", b =>
@@ -121,7 +113,6 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserId");
 
-
                     b.ToTable("Notifications");
                 });
 
@@ -138,7 +129,6 @@ namespace Habit_Buddies.Data.Migrations
                     b.HasIndex("FakeFriendId");
 
                     b.ToTable("UserFriends");
-
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
