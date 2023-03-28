@@ -29,4 +29,27 @@
 <body>
     <div id='calendar'></div>
      </body>
+<script>
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            events: '/Calendar/GetEvents'
+        });
+    });
+</script>
+<script>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,basicWeek,basicDay'
+        },
+        defaultDate: '2023-03-27',
+        navLinks: true, 
+        editable: false,
+        eventLimit: true, 
+        events: Habits
+    });
+    });
+    </script>
 </html>
