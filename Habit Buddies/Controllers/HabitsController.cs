@@ -169,10 +169,6 @@ namespace Habit_Buddies.Controllers
           return (_context.Habits?.Any(e => e.HabitId == id)).GetValueOrDefault();
         }
 
-        public ActionResult GetEvents()
-        { 
-            var events = ApplicationDbContext.Habits.ToList();
-            return Json(events, JsonRequestBehavior.AllowGet);
-        }
+       
     }
 }
