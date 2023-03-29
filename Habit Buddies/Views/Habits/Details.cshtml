@@ -46,12 +46,17 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EndDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IsCompleted)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IsCompleted)
         </dd>
+        <form method="post" action="/Habits/Complete">
+            <input type="hidden" name="habitId" value="@Model.HabitId" />
+            <input type="hidden" name="userId" value="@Model.UserId" />
+            <button type="submit">Mark as completed</button>
+        </form>
     </dl>
 </div>
 <div>
