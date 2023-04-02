@@ -1,14 +1,7 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome @User.Identity.Name</h1>
-    <h2>You have ... experience</h2>
-</div>
-
-<button type="button" class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Create","Habits")'">CREATE</button>
-<button type="button" class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Create","FakeFriends")'">CREATE FRIEND</button>
 
 <!DOCTYPE html>
 <html lang='en'>
@@ -28,6 +21,15 @@
     </script>
 </head>
 <body>
+    <div class="text-center">
+        <h1 class="display-4">Welcome @User.Identity.Name</h1>
+        <h2>You have ... experience</h2>
+    </div>
+
+    <div class="d-flex justify-content-around">
+        <button type="button" class="btn btn-outline-secondary mb-3" onclick="location.href='@Url.Action("Create","Habits")'"><i class="bi bi-plus-square"></i> CREATE HABIT</button>
+        <button type="button" class="btn btn-outline-secondary mb-3" onclick="location.href='@Url.Action("Create","FakeFriends")'"><i class="bi bi-plus-square"></i> CREATE FRIEND</button>
+    </div>
     <div id='calendar'></div>
      </body>
 </html>
