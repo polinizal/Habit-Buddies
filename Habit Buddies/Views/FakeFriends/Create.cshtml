@@ -4,33 +4,33 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>FakeFriend</h4>
+<h3 class="create">Create New Friend</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FriendName" class="control-label"></label>
-                <input asp-for="FriendName" class="form-control" />
+            <div class="form-floating mb-3">
+                <input asp-for="FriendName" class="form-control" id="FriendName" name="FriendName" placeholder="Enter Friend Name"/>
+                <label asp-for="FriendName" class="control-label" for="FriendName"></label>
                 <span asp-validation-for="FriendName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FriendRank" class="control-label"></label>
-                <input asp-for="FriendRank" class="form-control" />
+            <div class="form-floating mb-3">
+                <input asp-for="FriendRank" class="form-control" id="FriendRank" name="FriendRank" placeholder="Enter Friend Rank" />
+                <label asp-for="FriendRank" class="control-label" for="FriendRank"></label>
                 <span asp-validation-for="FriendRank" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary btn-create" /> |
+                <a asp-action="Index" class="btn btn-info">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+   
 </div>
 
 @section Scripts {

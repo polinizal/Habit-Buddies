@@ -1,16 +1,15 @@
 ﻿@model IEnumerable<Habit_Buddies.Data.Entities.FakeFriend>
-
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2>Your Friends List</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<button type="button" class="btn btn-outline-secondary my-2 btn-sm" onclick="location.href='@Url.Action("Create","FakeFriends")'">
+    <i class="bi bi-plus-square"></i>  CREATE NEW FRIEND
+</button>
+<table class="table table-hover table-bordered mt-2">
+    <thead class="thread-color">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FriendName)
@@ -30,10 +29,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FriendRank)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.FakeFriendId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FakeFriendId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FakeFriendId">Delete</a>
+            <td class="crud">
+                    <a asp-action="Edit" asp-route-id="@item.FakeFriendId" class="btn btn-outline-secondary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.FakeFriendId" class="btn btn-outline-secondary btn-sm"><i class="bi bi-info-square"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.FakeFriendId" class="btn btn-outline-secondary btn-sm"><i class="bi bi-trash3"></i></a>
             </td>
         </tr>
 }
