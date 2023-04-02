@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Habit_Buddies.Data;
 using Habit_Buddies.Data.Entities;
 using System.Security.Claims;
+using Habit_Buddies.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Habit_Buddies.Controllers
 {
+    [Authorize]
     public class HabitsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -248,5 +251,27 @@ namespace Habit_Buddies.Controllers
 
             return RedirectToAction("Index");
         }
+
+       /* [HttpGet]
+        public async Task<ActionResult<IEnumerable<HabitModel>>> GetMyHabits()
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return await _context.Habits
+                .Where(item => item.UserId == userId)
+                .Select(item => new HabitModel()
+                {
+                    HabitId = item.HabitId,
+                    Title = item.Title,
+                    Description = item.Description,
+                    Goal = item.Goal,
+                    Start = item.StartDate,
+                    End = item.EndDate,
+                    IsCompleted = item.IsCompleted,
+                    AllDay = item.AllDay
+                })
+                .ToListAsync();
+        }
+       */
+       
     }
 }

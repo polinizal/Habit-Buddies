@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Habit_Buddies.Data;
 using Habit_Buddies.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Habit_Buddies.Controllers
 {
+    [Authorize]
     public class NotificationsController : Controller
     {
         private readonly ApplicationDbContext _context;
