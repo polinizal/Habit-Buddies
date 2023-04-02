@@ -9,14 +9,14 @@ namespace Habit_Buddies.Models
         public string UserId { get; set; }
 
         public string Title { get; set; }
-        public virtual User? User { get; set; }
+        
         public string Description { get; set; }
 
         public string Goal { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime Start { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public DateTime End { get; set; }
 
         public bool IsCompleted { get; set; }
         public bool AllDay { get; set; }
