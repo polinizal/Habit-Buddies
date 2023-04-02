@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Habit_Buddies.Data;
 using Habit_Buddies.Data.Entities;
 using System.Security.Claims;
+using Habit_Buddies.Models;
 
 namespace Habit_Buddies.Controllers
 {
@@ -249,27 +250,26 @@ namespace Habit_Buddies.Controllers
             return RedirectToAction("Index");
         }
 
-        /*[HttpGet]
+       /* [HttpGet]
         public async Task<ActionResult<IEnumerable<HabitModel>>> GetMyHabits()
         {
-
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return await _context.Habits
+                .Where(item => item.UserId == userId)
+                .Select(item => new HabitModel()
+                {
+                    HabitId = item.HabitId,
+                    Title = item.Title,
+                    Description = item.Description,
+                    Goal = item.Goal,
+                    Start = item.StartDate,
+                    End = item.EndDate,
+                    IsCompleted = item.IsCompleted,
+                    AllDay = item.AllDay
+                })
+                .ToListAsync();
         }
-       /* public JsonResult GetHabits(ApplicationDbContext applicationDbContext)
-        {
-            List<Habit> habits = applicationDbContext.Habits.ToList(); 
-            var habitData = habits.Select(h => new {
-                title = h.Title,
-                description = h.Description,
-                goal = h.Goal,
-                start = h.StartDate,
-                end = h.EndDate
-            });
-            return Json(habitData);
-        }
-
-        private JsonResult Json(IEnumerable<object> habitData, object allowGet)
-        {
-            throw new NotImplementedException();
-        } */
+       */
+       
     }
 }

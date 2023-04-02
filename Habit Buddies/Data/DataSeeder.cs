@@ -75,6 +75,7 @@ namespace Habit_Buddies.Data
                         StartDate = DateTime.Now,
                         EndDate = DateTime.Now,
                         IsCompleted = false,
+                        AllDay = false,
 
                     },
                     new Habit
@@ -86,6 +87,7 @@ namespace Habit_Buddies.Data
                         StartDate = DateTime.Now,
                         EndDate = DateTime.Now,
                         IsCompleted = false,
+                        AllDay = false,
 
                     },
                      new Habit
@@ -97,6 +99,7 @@ namespace Habit_Buddies.Data
                          StartDate = DateTime.Now,
                          EndDate = DateTime.Now,
                          IsCompleted = false,
+                         AllDay = false,
                          //Notifications = new[] {} //ASK BOUT THIS!!!
                      },
                       new Habit
@@ -108,6 +111,7 @@ namespace Habit_Buddies.Data
                           StartDate = DateTime.Now,
                           EndDate = DateTime.Now,
                           IsCompleted = false,
+                          AllDay = false,
                           //Notifications = new[] {} //ASK BOUT THIS!!!
                       }
                             };
