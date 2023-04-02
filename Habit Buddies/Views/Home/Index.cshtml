@@ -33,3 +33,18 @@
     <div id='calendar'></div>
      </body>
 </html>
+<script>
+$.ajax({
+    url: '@Url.Action("GetHabits", "Habits")',
+    type: 'GET',
+    success: function(habits) {
+        $('#calendar').fullCalendar({
+            events: habits,
+            eventSources: []
+        });
+    },
+    error: function(error) {
+        alert('failed');
+    }
+});
+    </script>
