@@ -4,13 +4,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2>Your List With Notifications :)</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<button type="button" class="btn btn-outline-secondary mb-3 mt-1 btn-sm" onclick="location.href='@Url.Action("Create","Notifications")'"> @*style the Create Notification link, make it a button, style it*@
+    <i class="bi bi-plus-square"></i>  CREATE NEW NOTIFICATION
+</button>
+
+<table class="table table-hover table-bordered mb-5">
+    <thead class="thread-color">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
@@ -28,7 +29,7 @@
                 @Html.DisplayNameFor(model => model.IsEnabled)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Habit)
+                @Html.DisplayNameFor(model => model.HabitId)
             </th>
             <th></th>
         </tr>
@@ -54,10 +55,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Habit.HabitId)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.NotificationId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NotificationId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NotificationId">Delete</a>
+            <td class="crud">
+                    <a asp-action="Edit" asp-route-id="@item.NotificationId" class="btn btn-outline-secondary btn-sm"><i class="bi bi-pencil-square"></i></a> 
+                    <a asp-action="Details" asp-route-id="@item.NotificationId" class="btn btn-outline-secondary btn-sm"><i class="bi bi-info-square"></i></a> 
+                    <a asp-action="Delete" asp-route-id="@item.NotificationId" class="btn btn-outline-secondary btn-sm"><i class="bi bi-trash3"></i></a>
             </td>
         </tr>
 }

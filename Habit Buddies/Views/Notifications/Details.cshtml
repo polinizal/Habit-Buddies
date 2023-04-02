@@ -4,10 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h2 class="details">Notification Details</h2>
 
 <div>
-    <h4>Notification</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -22,22 +21,22 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
-        <dt class = "col-sm-2">
+        <dt hidden class = "col-sm-2">
             @Html.DisplayNameFor(model => model.User)
         </dt>
-        <dd class = "col-sm-10">
+        <dd hidden class = "col-sm-10">
             @Html.DisplayFor(model => model.User.Id)
         </dd>
-        <dt class = "col-sm-2">
+        <dt hidden class = "col-sm-2">
             @Html.DisplayNameFor(model => model.NotificationTime)
         </dt>
-        <dd class = "col-sm-10">
+        <dd hidden class = "col-sm-10">
             @Html.DisplayFor(model => model.NotificationTime)
         </dd>
-        <dt class = "col-sm-2">
+        <dt hidden class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IsEnabled)
         </dt>
-        <dd class = "col-sm-10">
+        <dd hidden class = "col-sm-10">
             @Html.DisplayFor(model => model.IsEnabled)
         </dd>
         <dt class = "col-sm-2">
@@ -49,6 +48,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.NotificationId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.NotificationId" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
 </div>
