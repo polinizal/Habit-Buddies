@@ -4,10 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h2 class="details">Habit Details</h2> @*Add styling => shadow & colour to the heading*@
 
 <div>
-    <h4>Habit</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -16,12 +15,18 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
-        <dt class = "col-sm-2">
+
+        @*UserId is hidden because there is no need for the current User to see his ID there, its obvious it's his UserId*@
+
+        <dt hidden class = "col-sm-2">
             @Html.DisplayNameFor(model => model.User)
         </dt>
-        <dd class = "col-sm-10">
+        <dd hidden class = "col-sm-10">
             @Html.DisplayFor(model => model.User.Id)
         </dd>
+
+        @*End of hidden User*@
+
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -55,11 +60,12 @@
         <form method="post" action="/Habits/Complete">
             <input type="hidden" name="habitId" value="@Model.HabitId" />
             <input type="hidden" name="userId" value="@Model.UserId" />
-            <button type="submit">Mark as completed</button>
+            <button type="submit" class="btn btn-outline-secondary mt-1">Mark as completed</button> @*button to change, edit the completion of the Habit, ask Kosta bout this, why not in Edit*@
         </form>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.HabitId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @* adding style to these two buttons*@
+    <a asp-action="Edit" asp-route-id="@Model?.HabitId" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
 </div>

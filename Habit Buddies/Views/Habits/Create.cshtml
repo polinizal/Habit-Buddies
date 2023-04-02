@@ -3,35 +3,39 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>Create</h1>
-
-<h4>Habit</h4>
+<div class="mx-auto"> @*center the content// not working, view again*@
+<h3 class="align-content-center create">New Habit! :)</h3> @*Heading *@
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-4"> @*modify to be more responsive*@
+        <form asp-action="Create"> @*asp-action connection with controller Create*@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div hidden class="form-group">
+            <div hidden class="form-group"> @*hidden, this way the chosen UserId is the default one => the current UserId*@
                 <label asp-for="UserId" class="control-label"></label>
                 <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+
+            @*Floating labels, aesthetically pleasing*@
+
+            <div class="form-floating mb-3">
+                    <input asp-for="Title" type="text" class="form-control" id="title" placeholder="Enter Title" name="title" />
+                    <label asp-for="Title" for="title" class="control-label"></label>
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+            <div class="form-floating mb-3">
+                <input asp-for="Description" type="text" class="form-control" id="description" placeholder="Enter Description" name="description" />
+                    <label asp-for="Description" for="description" class="control-label"></label>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Goal" class="control-label"></label>
-                <input asp-for="Goal" class="form-control" />
+            <div class="form-floating mb-2">
+                <input asp-for="Goal" type="text" class="form-control" id="goal" placeholder="Set your goal" name="goal" />
+                    <label asp-for="Goal" for="goal" class="control-label"></label>
                 <span asp-validation-for="Goal" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            @*End of floating lables*@
+
+            <div class="form-group mb-2">
                 <label asp-for="StartDate" class="control-label"></label>
                 <input asp-for="StartDate" class="form-control" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
@@ -41,24 +45,21 @@
                 <input asp-for="EndDate" class="form-control" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
-            <div hidden class="form-group form-check">
+            <div hidden class="form-group form-check"> @*hidden because the user cannot have completed the habit in creation of it*@
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
                 </label>
             </div>
-            <a href="https://localhost:7017/Notifications/Create">
-                <div class="form-group">
-                    <input type="submit" value="Create Me" class="btn btn-primary" />
+            
+                <div class="form-group my-3"> @*thi is the submit button which submits the data and redirects the user to Notification Page*@
+                    <input type="submit" value="Create Me" class="btn btn-create mb-1"  onclick="https://localhost:7017/Notifications/Create" /> |
+                    <a asp-action="Index" class="btn btn-info mb-1">Back to List</a>
                 </div>
-            </a>
+           
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

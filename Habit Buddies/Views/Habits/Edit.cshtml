@@ -4,60 +4,65 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Habit</h4>
+<h2 class="edit">Edit Habit</h2> @*Add additional style to the heading*@
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="HabitId" />
-            <div class="form-group">
+
+            <div hidden class="form-group"> @*UserId is hidden, no use the user to edit his UserId*@
                 <label asp-for="UserId" class="control-label"></label>
                 <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
                 <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+
+            @*Add margin-bottom to the elements for better positioning*@
+            @*Edit lables to be floating lables for aesthetically pleasing effect*@
+
+            <div class="form-floating mb-3">
+                <input asp-for="Title" class="form-control" type="text" id="title" placeholder="Edit Title" name="title" />
+                <label asp-for="Title" class="control-label" for="title"></label>
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+            <div class="form-floating mb-3">
+                <input asp-for="Description" class="form-control" type="text" id="description" placeholder="Edit Description" name="description" />
+                <label asp-for="Description" class="control-label" for="description"></label>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Goal" class="control-label"></label>
-                <input asp-for="Goal" class="form-control" />
+            <div class="form-floating mb-2">
+                <input asp-for="Goal" class="form-control" type="text" id="goal" placeholder="Edit Goal" name="goal" />
+                <label asp-for="Goal" class="control-label" for="goal"></label>
                 <span asp-validation-for="Goal" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            @*End of floating lables*@
+
+            <div class="form-group mb-1">
                 <label asp-for="StartDate" class="control-label"></label>
                 <input asp-for="StartDate" class="form-control" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label asp-for="EndDate" class="control-label"></label>
                 <input asp-for="EndDate" class="form-control" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+            <div class="form-group form-check mb-2">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-warning" /> |
+                <a asp-action="Index" class="btn btn-info">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
