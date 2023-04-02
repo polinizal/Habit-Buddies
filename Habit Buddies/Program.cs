@@ -82,6 +82,7 @@ namespace Habit_Buddies
                 {
                     var service = scope.ServiceProvider.GetService<DataSeeder>();
                     service.Seed();
+                    
                 }
             }
 

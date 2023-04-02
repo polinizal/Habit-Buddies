@@ -14,5 +14,113 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px; 
+    /*background-color: #f0ebfc;*/ /*add background-color*/
+}
+
+header{
+    margin-bottom: 80px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #9CB4CC;
+    margin-top:20px;
+}
+main{
+     flex:1;
+}
+a{
+    text-decoration: none;
+    
+}
+
+/*.parent{
+    display:flex;
+    justify-self:center;
+    align-self:center;
+}*/
+
+/* CSS to change the color of the icon inside the button when the link is hovered */
+.btn:hover i {
+    color: white;
+}
+.btn i {
+    color: #f3969a;
+   
+}
+.container{
+    margin:auto;
+}
+
+.button-color {
+    background-color: #D3CEDF;
+}
+
+
+.navbar {
+    background-color: #748DA6;
+    margin-bottom: 0px; /* increase margin bottom */
+}
+
+.thread-color {
+    background-color: #F2D7D9;
+}
+
+table.rounded{
+    border-radius:10px;
+}
+
+.delete {
+    color: #f57550;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.details {
+    color: #56cc9d;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.edit {
+    color: #ffce67;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.create {
+    color: #c0b1e6;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.btn-create {
+    background-color: #c0b1e6;
+}
+.btn-create:hover {
+    background-color: #8f84ab;
+ }
+.crud{
+    display:flex;
+    justify-content:space-around;
+}
+
+/*Notification Description1 + Plus button*/
+.btn-input-height {
+    height: 100%;
+}
+
+.input-group .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group-append .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group-append {
+    margin-left: -1px;
+}
+
+
+#calendar{
+  margin-bottom: 80px;
 }
