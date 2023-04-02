@@ -249,7 +249,12 @@ namespace Habit_Buddies.Controllers
             return RedirectToAction("Index");
         }
 
-        public JsonResult GetHabits(ApplicationDbContext applicationDbContext)
+        /*[HttpGet]
+        public async Task<ActionResult<IEnumerable<HabitModel>>> GetMyHabits()
+        {
+
+        }
+       /* public JsonResult GetHabits(ApplicationDbContext applicationDbContext)
         {
             List<Habit> habits = applicationDbContext.Habits.ToList(); 
             var habitData = habits.Select(h => new {
@@ -265,6 +270,6 @@ namespace Habit_Buddies.Controllers
         private JsonResult Json(IEnumerable<object> habitData, object allowGet)
         {
             throw new NotImplementedException();
-        }
+        } */
     }
 }
