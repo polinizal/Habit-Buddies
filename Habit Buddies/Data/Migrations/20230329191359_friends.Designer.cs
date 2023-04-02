@@ -4,6 +4,7 @@ using Habit_Buddies.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Habit_Buddies.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230329191359_friends")]
+    partial class friends
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,7 +133,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("FakeFriendId");
 
-                    b.ToTable("UserFriend");
+                    b.ToTable("UserFriends");
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.UserFriendship", b =>
@@ -146,7 +148,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserFriendId");
 
-                    b.ToTable("UserFriendships");
+                    b.ToTable("UserFriendship");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -425,11 +427,13 @@ namespace Habit_Buddies.Data.Migrations
                     b.HasOne("Habit_Buddies.Data.Entities.User", "UserFriend")
                         .WithMany("FriendsOf")
                         .HasForeignKey("UserFriendId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Habit_Buddies.Data.Entities.User", "User")
                         .WithMany("Friends")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");

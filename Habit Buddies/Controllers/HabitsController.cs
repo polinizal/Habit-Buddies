@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Habit_Buddies.Data;
 using Habit_Buddies.Data.Entities;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Habit_Buddies.Controllers
 {
+    [Authorize]
     public class HabitsController : Controller
     {
         private readonly ApplicationDbContext _context;

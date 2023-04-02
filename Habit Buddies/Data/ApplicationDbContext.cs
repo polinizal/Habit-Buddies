@@ -36,9 +36,24 @@ namespace Habit_Buddies.Data
                 .WithMany(h => h.Notifications)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<UserFriend>()
-                .HasKey(uf => new { uf.UserId, uf.FakeFriendId });
 
+            
+
+            modelBuilder.Entity<UserFriendship>(uf =>
+            {
+                uf.HasKey(x => new { x.UserId, x.UserFriendId });
+
+                uf.HasOne(x => x.User)
+                    .WithMany(x => x.Friends)
+                    .HasForeignKey(x => x.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
+                uf.HasOne(x => x.UserFriend)
+                    .WithMany(x => x.FriendsOf)
+                    .HasForeignKey(x => x.UserFriendId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
+            });
 
             //DataBaseSeeder
 
@@ -50,8 +65,7 @@ namespace Habit_Buddies.Data
         public DbSet<Habit> Habits { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<FakeFriend> FakeFriends { get; set; }
-        public DbSet<UserFriend> UserFriends { get; set; }
+        public DbSet<Habit_Buddies.Data.Entities.UserFriendship>? UserFriendships { get; set; }
 
     }
 
