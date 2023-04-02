@@ -6,10 +6,19 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <div class="rounded-pill d-inline-flex align-items-center" style="min-width: 130px; background-color: grey; color: white; height: 35px;">
+                    <span class="flex-grow-1 text-center ms-1">Procrastinator</span>
+                    <span class="badge bg-warning mx-1 rank">4</span>
+                </div>
+            </a>
+        </li>
+
+    <li class="nav-item mt-1">
         <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item mt-1">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button  type="submit" class="nav-link btn @*btn-link*@">Logout</button>
         </form>
@@ -17,7 +26,7 @@
 }
 else
 {
-    <li class="nav-item">
+    <li class="nav-item ">
         <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">
