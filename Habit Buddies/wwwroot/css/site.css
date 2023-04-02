@@ -119,6 +119,17 @@ table.rounded{
 .input-group-append {
     margin-left: -1px;
 }
+.rounded-pill {
+    border: 1px solid black;
+}
+
+.badge {
+    border: 1px solid black;
+}
+.rank {
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 
 
 #calendar{
