@@ -252,7 +252,7 @@ namespace Habit_Buddies.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet("/MyHabits")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<HabitModel>>> GetMyHabits()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
