@@ -26,8 +26,9 @@ namespace Habit_Buddies.Controllers
         // GET: UserFriendships
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.UserFriendships.Include(u => u.User).Include(u => u.UserFriend);
-            return View(await applicationDbContext.ToListAsync());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
+            var userFriendships = await _context.UserFriendships.Where(h => h.UserId == userId).ToListAsync(); // Get the habits created by the current user
+            return View(userFriendships);
         }
 
         // GET: UserFriendships/Details/5
