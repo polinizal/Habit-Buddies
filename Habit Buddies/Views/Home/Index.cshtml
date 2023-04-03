@@ -7,29 +7,31 @@
 <html lang='en'>
 <head>
     <meta charset='utf-8' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
-    <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth'
-            });
-            calendar.render();
-        });
-
-    </script>
 </head>
 <body>
-    <div>
-      <h1>classs="display-4">Welcome @User.Identity.Name</h1>
-    <h2>You have ... experience</h2>
+    <div class="text-center">
+        <h1 class="display-4">Welcome @User.Identity.Name</h1>
+        <h2>You have ... experience</h2>
     </div>
 
     <div class="d-flex justify-content-around">
         <button type="button" class="btn btn-outline-secondary mb-3" onclick="location.href='@Url.Action("Create","Habits")'"><i class="bi bi-plus-square"></i> CREATE HABIT</button>
         <button type="button" class="btn btn-outline-secondary mb-3" onclick="location.href='@Url.Action("Create","FakeFriends")'"><i class="bi bi-plus-square"></i> CREATE FRIEND</button>
     </div>
-    <div> id='calendar' </div>
+    
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events:'/MyHabits'
+            });
+            calendar.render();
+        });
+
+    </script>
+    <div id='calendar' ></div>
      </body>
 </html>
