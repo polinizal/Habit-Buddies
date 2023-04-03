@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Habit_Buddies.Data;
 using Habit_Buddies.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Habit_Buddies.Controllers
 {
@@ -24,8 +25,10 @@ namespace Habit_Buddies.Controllers
         // GET: Notifications
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Notifications.Include(n => n.Habit).Include(n => n.User);
-            return View(await applicationDbContext.ToListAsync());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
+            var notificariions = await _context.Notifications.Include(n => n.Habit).Where(h => h.UserId == userId).ToListAsync(); // Get the notifications created by the current user
+            //var applicationDbContext = _context.Notifications.Include(n => n.Habit).Include(n => n.User);
+            return View(notificariions);
         }
 
         // GET: Notifications/Details/5
