@@ -62,7 +62,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Habits");
+                    b.ToTable("Habits", (string)null);
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Notification", b =>
@@ -100,7 +100,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Notifications");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.UserFriendship", b =>
@@ -115,7 +115,7 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.HasIndex("UserFriendId");
 
-                    b.ToTable("UserFriendships");
+                    b.ToTable("UserFriendships", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
