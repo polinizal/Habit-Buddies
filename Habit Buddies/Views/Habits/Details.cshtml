@@ -70,6 +70,9 @@
         </form>
     </dl>
 </div>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: @Model.percentageCompleted%;"></div>
+</div>
 <div>
     @* adding style to these two buttons*@
     <a asp-action="Edit" asp-route-id="@Model?.HabitId" class="btn btn-warning">Edit</a> |

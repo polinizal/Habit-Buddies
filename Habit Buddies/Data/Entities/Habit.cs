@@ -44,6 +44,9 @@ IsCompleted: A flag indicating whether the user has completed the habit for the 
 
         public DateTime EndDate { get; set; }
 
+        public int TotalDays { get; set; } /*= (EndDate - StartDate).Days;*/
+        public int DaysCompleted { get; set; }  /*= (DateTime.Today - StartDate).Days;*/
+        public double percentageCompleted { get; set; }  /*= DaysCompleted / TotalDays * 100;*/
         public bool IsCompleted { get; set; }
         public bool AllDay { get; set; }
 
