@@ -206,21 +206,18 @@ namespace Habit_Buddies.Controllers
             return View(userFriendship);
         }
 
-        // POST: UserFriendships/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(string userId, string userFriendId)
         {
-            if (_context.UserFriendships == null)
+            var userFriendship = await _context.UserFriendships.FindAsync(userId, userFriendId);
+            if (userFriendship == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.UserFriendship'  is null.");
+                return NotFound();
             }
-            var userFriendship = await _context.UserFriendships.FindAsync(id);
-            if (userFriendship != null)
-            {
-                _context.UserFriendships.Remove(userFriendship);
-            }
-            
+
+            _context.UserFriendships.Remove(userFriendship);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
