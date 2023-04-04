@@ -18,11 +18,6 @@ namespace Habit_Buddies.Data
 
 
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Habit>()
-                .HasMany(h => h.Notifications)
-                .WithOne(n => n.Habit)
-                .HasForeignKey(n => n.HabitId)
-                .OnDelete(DeleteBehavior.Restrict);
 
 
             modelBuilder.Entity<Habit>()
