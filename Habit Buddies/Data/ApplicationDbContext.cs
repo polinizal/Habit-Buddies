@@ -22,7 +22,8 @@ namespace Habit_Buddies.Data
                 .HasMany(h => h.Notifications)
                 .WithOne(n => n.Habit)
                 .HasForeignKey(n => n.HabitId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             modelBuilder.Entity<Habit>()
                 .HasOne(h => h.User)
