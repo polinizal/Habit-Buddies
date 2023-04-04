@@ -24,11 +24,24 @@ namespace Habit_Buddies.Controllers
         }
 
         // GET: Habits
+        //public async Task<IActionResult> Index()
+        //{
+        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
+        //    var applicationDbContext = _context.Habits.Where(h => h.UserId == userId); // Get the habits created by the current user
+        //    return View(await applicationDbContext.ToListAsync());
+        //}
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
-            var applicationDbContext = _context.Habits.Where(h => h.UserId == userId); // Get the habits created by the current user
-            return View(await applicationDbContext.ToListAsync());
+            var habits = await _context.Habits.Where(h => h.UserId == userId).ToListAsync(); // Get the habits created by the current user
+
+            foreach (var habit in habits)
+            {
+                habit.PercentageCompleted = CalculatePercentageCompleted(habit.StartDate, habit.EndDate);
+            }
+
+            await _context.SaveChangesAsync();
+            return View(habits);
         }
 
         // GET: Habits/Details/5
@@ -253,6 +266,12 @@ namespace Habit_Buddies.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+        private static double CalculatePercentageCompleted(DateTime startDate, DateTime endDate)
+        {
+            var totalDays = (endDate.Date - startDate.Date).Days;
+            var daysCompleted = (DateTime.Today - startDate).Days;
+            return daysCompleted / totalDays * 100;
         }
 
         [HttpGet("/MyHabits")]
