@@ -148,24 +148,27 @@ namespace Habit_Buddies.Controllers
             return View(habit);
         }
 
-        // POST: Habits/Delete/5
+     
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Habits == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Habit'  is null.");
-            }
             var habit = await _context.Habits.FindAsync(id);
-            if (habit != null)
+            if (habit == null)
             {
-                _context.Habits.Remove(habit);
+                return NotFound();
             }
-            
+
+            // Remove all associated notifications before deleting the habit
+            var notifications = _context.Notifications.Where(n => n.HabitId == id);
+            _context.Notifications.RemoveRange(notifications);
+
+            _context.Habits.Remove(habit);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
 
         private bool HabitExists(int id)
         {
