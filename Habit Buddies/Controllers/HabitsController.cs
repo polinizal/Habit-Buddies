@@ -269,9 +269,10 @@ namespace Habit_Buddies.Controllers
         }
         private static double CalculatePercentageCompleted(DateTime startDate, DateTime endDate)
         {
-            var totalDays = (endDate.Date - startDate.Date).Days;
-            var daysCompleted = (DateTime.Today - startDate).Days;
-            return daysCompleted / totalDays * 100;
+            double totalDays = (endDate.Date - startDate.Date).Days;
+            double daysCompleted = (DateTime.Today.Date - startDate.Date).Days;
+            double percentageCompleted = daysCompleted / totalDays * 100;
+            return Math.Round(percentageCompleted);
         }
 
         [HttpGet("/MyHabits")]

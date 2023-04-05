@@ -3,14 +3,18 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
+
 <ul class="navbar-nav">
+    @{
+        var user = await UserManager.GetUserAsync(User);
+    }
 @if (SignInManager.IsSignedIn(User))
 {
         <li class="nav-item">
             <a class="nav-link" href="#">
                 <div class="rounded-pill d-inline-flex align-items-center" style="min-width: 130px; background-color: grey; color: white; height: 35px;">
-                    <span class="flex-grow-1 text-center ms-1">Procrastinator</span>
-                    <span class="badge bg-warning mx-1 rank">4</span>
+                    <span class="flex-grow-1 text-center ms-1">@user.Rank</span>
+                    <span class="badge bg-warning mx-1 rank">@user.Experience</span>
                 </div>
             </a>
         </li>
@@ -24,6 +28,7 @@
         </form>
     </li>
 }
+    
 else
 {
     <li class="nav-item ">
@@ -34,3 +39,4 @@ else
     </li>
 }
 </ul>
+
