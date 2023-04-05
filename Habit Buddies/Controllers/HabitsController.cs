@@ -37,6 +37,7 @@ namespace Habit_Buddies.Controllers
 
             foreach (var habit in habits)
             {
+                habit.EndDate = habit.StartDate.AddDays(30);
                 habit.PercentageCompleted = CalculatePercentageCompleted(habit.StartDate, habit.EndDate);
             }
 
