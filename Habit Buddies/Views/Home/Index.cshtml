@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -18,7 +17,7 @@
         <button type="button" class="btn btn-outline-secondary mb-3" onclick="location.href='@Url.Action("Create","Habits")'"><i class="bi bi-plus-square"></i> CREATE HABIT</button>
         <button type="button" class="btn btn-outline-secondary mb-3" onclick="location.href='@Url.Action("Create","FakeFriends")'"><i class="bi bi-plus-square"></i> CREATE FRIEND</button>
     </div>
-    
+
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
     <script>
 
@@ -27,22 +26,43 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 events:'/MyHabits',
-                eventColor: '#F2D7D9'
+                eventColor: '#F2D7D9',
+                 eventClick:  function(info) {
+                     console.log('clicked');
+                     console.log(info.event);                                          
+                    document.querySelector('#habitTitle').innerHTML = info.event.title;
+                    document.querySelector('#details-title').innerHTML = info.event.extendedProps.title;
+                    document.querySelector('#details-description').innerHTML = info.event.extendedProps.description;
+                    document.querySelector('#details-goal').innerHTML = info.event.extendedProps.goal;
+                    document.querySelector('#details-startdate').innerHTML = info.event.extendedProps.startDate;
+                    document.querySelector('#details-enddate').innerHTML = info.event.extendedProps.endDate;
+                    
+                    var myModal = new bootstrap.Modal(document.getElementById('myModal'), { keyboard: false });
+                    myModal.show(); 
+                    
+                },
             });
             calendar.render();
         });
 
     </script>
-    <div id='calendar' ></div>
+    <div id='calendar'></div>
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><span id="habitTitle"></span></h4>
+                    <h4 class="modal-title">Habit <span id="habitTitle"></span></h4>
                 </div>
                 <div class="modal-body">
-                    <p id="pDetails"></p>
+                    <p id="pDetails">
+                        Title = <span id="details-title"></span>
+                        Description = <span id="details-description"></span>
+                        Goal = <span id="details-goal"></span>
+                        Start = <span id="details-startdate"></span>
+                        End = <span id="details-enddate"></span>
+                        Allday= <span id="details-allday"></span>
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -50,5 +70,5 @@
             </div>
         </div>
     </div>
-     </body>
+</body>
 </html>
