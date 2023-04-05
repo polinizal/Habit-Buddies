@@ -29,13 +29,13 @@
                 eventColor: '#F2D7D9',
                  eventClick:  function(info) {
                      console.log('clicked');
-                     console.log(info.event);                                          
+                     console.log(info.event.extendedProps);                                          
                     document.querySelector('#habitTitle').innerHTML = info.event.title;
-                    document.querySelector('#details-title').innerHTML = info.event.extendedProps.title;
+                    document.querySelector('#details-title').innerHTML = info.event.title;
                     document.querySelector('#details-description').innerHTML = info.event.extendedProps.description;
                     document.querySelector('#details-goal').innerHTML = info.event.extendedProps.goal;
-                    document.querySelector('#details-startdate').innerHTML = info.event.extendedProps.startDate;
-                    document.querySelector('#details-enddate').innerHTML = info.event.extendedProps.endDate;
+                    document.querySelector('#details-startdate').innerHTML = info.event.start;
+                    document.querySelector('#details-enddate').innerHTML = info.event.end;
                     
                     var myModal = new bootstrap.Modal(document.getElementById('myModal'), { keyboard: false });
                     myModal.show(); 
@@ -56,12 +56,12 @@
                 </div>
                 <div class="modal-body">
                     <p id="pDetails">
-                        Title = <span id="details-title"></span>
-                        Description = <span id="details-description"></span>
-                        Goal = <span id="details-goal"></span>
-                        Start = <span id="details-startdate"></span>
-                        End = <span id="details-enddate"></span>
-                        Allday= <span id="details-allday"></span>
+                        Title = <span id="details-title"></span><br />
+                        Description = <span id="details-description"></span><br />
+                        Goal = <span id="details-goal"></span><br />
+                        Start = <span id="details-startdate"></span><br />
+                        End = <span id="details-enddate"></span><br />
+                        Allday= <span id="details-allday"></span><br />
                     </p>
                 </div>
                 <div class="modal-footer">
