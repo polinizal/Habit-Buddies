@@ -40,11 +40,11 @@
                 <input asp-for="StartDate" class="form-control" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="EndDate" class="control-label"></label>
                 <input asp-for="EndDate" class="form-control" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
+            </div>*@
             <div hidden class="form-group form-check"> @*hidden because the user cannot have completed the habit in creation of it*@
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
