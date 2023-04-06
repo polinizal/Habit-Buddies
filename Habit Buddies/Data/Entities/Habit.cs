@@ -44,8 +44,11 @@ IsCompleted: A flag indicating whether the user has completed the habit for the 
 
         public DateTime EndDate { get; set; }
 
-        public double PercentageCompleted { get; set; } 
+        public double PercentageCompleted { get; set; }
         public bool IsCompleted { get; set; }
+        public bool IsCompletedToday { get; set; }
+        public int CompletedDays { get; set; }
+        public DateTime LastCompletedDate { get; set; }
         public bool AllDay { get; set; }
 
         public virtual ICollection<Notification> Notifications { get; set; }

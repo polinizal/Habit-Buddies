@@ -37,8 +37,11 @@ namespace Habit_Buddies.Controllers
 
             foreach (var habit in habits)
             {
-                habit.EndDate = habit.StartDate.AddDays(30);
-                habit.PercentageCompleted = CalculatePercentageCompleted(habit.StartDate, habit.EndDate);
+                if (habit.LastCompletedDate != DateTime.Today)
+                {
+                    habit.IsCompletedToday = false;
+                }
+                habit.PercentageCompleted = CalculatePercentageCompleted(habit.StartDate, habit.EndDate, habit.HabitId);
             }
 
             await _context.SaveChangesAsync();
@@ -81,6 +84,7 @@ namespace Habit_Buddies.Controllers
             if (ModelState.IsValid)
             {
                 habit.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Set the UserId property to the current user's ID
+                habit.EndDate = habit.StartDate.AddDays(28);
                 _context.Add(habit);
                 await _context.SaveChangesAsync();
                 return Redirect("https://localhost:7017/Notifications/Create");
@@ -268,10 +272,31 @@ namespace Habit_Buddies.Controllers
 
             return RedirectToAction("Index");
         }
-        private static double CalculatePercentageCompleted(DateTime startDate, DateTime endDate)
+        [HttpPost]
+        public async Task<IActionResult> CompleteToday(int habitId, string userId)
         {
-            double totalDays = (endDate.Date - startDate.Date).Days;
-            double daysCompleted = (DateTime.Today.Date - startDate.Date).Days;
+            var habit = await _context.Habits.FindAsync(habitId);
+            var user = await _context.Users.FindAsync(userId);
+
+            if (habit == null || user == null)
+            {
+                return NotFound();
+            }
+            if (!habit.IsCompletedToday)
+            {
+                habit.LastCompletedDate = DateTime.Today;
+                habit.CompletedDays++;
+                habit.IsCompletedToday = true;
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        private double CalculatePercentageCompleted(DateTime startDate, DateTime endDate, int habitId)
+        {
+            var habit =  _context.Habits.Find(habitId);
+            double totalDays = 28;
+            double daysCompleted = habit.CompletedDays;
             double percentageCompleted = daysCompleted / totalDays * 100;
             return Math.Round(percentageCompleted);
         }
