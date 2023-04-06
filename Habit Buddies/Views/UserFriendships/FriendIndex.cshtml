@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Habit_Buddies.Data.Entities.Habit>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Friend's Habit List :)</h2>
+
+
+<div class="table-responsive mt-2">
+    <table class="table table-hover table-bordered">
+        <thead class="thread-color">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                @* <th>
+                @Html.DisplayNameFor(model => model.User)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Goal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                @* <th>
+                @Html.DisplayNameFor(model => model.IsCompleted)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.AllDay)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr style="@(item.IsCompleted ? "background-color: #ccffdd;" : "")">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    @*<td>
+                @Html.DisplayFor(modelItem => item.User.Id)
+                </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Goal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    @*<td>
+                @Html.DisplayFor(modelItem => item.IsCompleted)
+                </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AllDay)
+                    </td>                   
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
