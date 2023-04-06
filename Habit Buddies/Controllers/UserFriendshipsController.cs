@@ -30,6 +30,12 @@ namespace Habit_Buddies.Controllers
             var userFriendships = await _context.UserFriendships.Where(h => h.UserId == userId).ToListAsync(); // Get the friends added by the current user
             return View(userFriendships);
         }
+        public async Task<IActionResult> IndexFriendHabits(string userFriendId)
+        {
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
+            var habits = await _context.Habits.Where(h => h.UserId == userFriendId).ToListAsync(); // Get the habits created by the current user
+            return View(habits);
+        }
 
         // GET: UserFriendships/Details/5
         public async Task<IActionResult> Details(string id)

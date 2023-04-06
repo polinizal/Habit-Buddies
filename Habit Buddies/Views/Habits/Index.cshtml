@@ -43,7 +43,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr style="@(item.IsCompleted ? "background-color: #ccffdd;" : "")">
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
