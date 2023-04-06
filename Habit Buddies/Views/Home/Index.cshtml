@@ -36,7 +36,9 @@
                     document.querySelector('#details-goal').innerHTML = info.event.extendedProps.goal;
                     document.querySelector('#details-startdate').innerHTML = info.event.start;
                     document.querySelector('#details-enddate').innerHTML = info.event.end;
-                    
+                    document.querySelector('#details-iscompleted').innerHTML = info.event.completed;
+                    document.querySelector('#details-allday').innerHTML = info.event.allday;
+
                     var myModal = new bootstrap.Modal(document.getElementById('myModal'), { keyboard: false });
                     myModal.show(); 
                     
@@ -52,7 +54,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Habit <span id="habitTitle"></span></h4>
+                    <h4 class="modal-title"><span id="habitTitle"></span></h4>
                 </div>
                 <div class="modal-body">
                     <p id="pDetails">
@@ -61,11 +63,11 @@
                         Goal = <span id="details-goal"></span><br />
                         Start = <span id="details-startdate"></span><br />
                         End = <span id="details-enddate"></span><br />
+                        Completed= <span id="details-iscompleted"></span><br />
                         Allday= <span id="details-allday"></span><br />
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
