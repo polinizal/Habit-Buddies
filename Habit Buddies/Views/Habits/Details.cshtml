@@ -63,10 +63,22 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.AllDay)
         </dd>
+        <form method="post" action="/Habits/CompleteToday">
+            <input type="hidden" name="habitId" value="@Model.HabitId" />
+            <input type="hidden" name="userId" value="@Model.UserId" />
+            @if (!Model.IsCompletedToday)
+            {
+                <button type="submit" class="btn btn-outline-secondary mt-1">Complete for the day</button>
+            }
+        </form>
         <form method="post" action="/Habits/Complete">
             <input type="hidden" name="habitId" value="@Model.HabitId" />
             <input type="hidden" name="userId" value="@Model.UserId" />
-            <button type="submit" class="btn btn-outline-secondary mt-1">Mark as completed</button> @*button to change, edit the completion of the Habit, ask Kosta bout this, why not in Edit*@
+            @if (Model.PercentageCompleted >= 100)
+            {
+                <button type="submit" class="btn btn-outline-secondary mt-1">Mark as completed</button> @*button to change, edit the completion of the Habit, ask Kosta bout this, why not in Edit*@
+            }
+            
         </form>
     </dl>
 </div>
