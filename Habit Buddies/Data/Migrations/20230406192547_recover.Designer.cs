@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Habit_Buddies.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230328182326_HabitEndDate")]
-    partial class HabitEndDate
+    [Migration("20230406192547_recover")]
+    partial class recover
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,25 +24,6 @@ namespace Habit_Buddies.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Habit_Buddies.Data.Entities.FakeFriend", b =>
-                {
-                    b.Property<int>("FakeFriendId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FakeFriendId"), 1L, 1);
-
-                    b.Property<string>("FriendName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FriendRank")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FakeFriendId");
-
-                    b.ToTable("FakeFriends");
-                });
-
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Habit", b =>
                 {
                     b.Property<int>("HabitId")
@@ -50,6 +31,12 @@ namespace Habit_Buddies.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HabitId"), 1L, 1);
+
+                    b.Property<bool>("AllDay")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("CompletedDays")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -64,6 +51,15 @@ namespace Habit_Buddies.Data.Migrations
 
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsCompletedToday")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastCompletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("PercentageCompleted")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -121,19 +117,19 @@ namespace Habit_Buddies.Data.Migrations
                     b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("Habit_Buddies.Data.Entities.UserFriend", b =>
+            modelBuilder.Entity("Habit_Buddies.Data.Entities.UserFriendship", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("FakeFriendId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserFriendId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("UserId", "FakeFriendId");
+                    b.HasKey("UserId", "UserFriendId");
 
-                    b.HasIndex("FakeFriendId");
+                    b.HasIndex("UserFriendId");
 
-                    b.ToTable("UserFriends");
+                    b.ToTable("UserFriendships");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -348,6 +344,12 @@ namespace Habit_Buddies.Data.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<int?>("Experience")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Rank")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasDiscriminator().HasValue("User");
                 });
 
@@ -381,23 +383,21 @@ namespace Habit_Buddies.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Habit_Buddies.Data.Entities.UserFriend", b =>
+            modelBuilder.Entity("Habit_Buddies.Data.Entities.UserFriendship", b =>
                 {
-                    b.HasOne("Habit_Buddies.Data.Entities.FakeFriend", "FakeFriend")
-                        .WithMany("UserFriends")
-                        .HasForeignKey("FakeFriendId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("Habit_Buddies.Data.Entities.User", "UserFriend")
+                        .WithMany("FriendsOf")
+                        .HasForeignKey("UserFriendId")
                         .IsRequired();
 
                     b.HasOne("Habit_Buddies.Data.Entities.User", "User")
-                        .WithMany("UserFriends")
+                        .WithMany("Friends")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FakeFriend");
-
                     b.Navigation("User");
+
+                    b.Navigation("UserFriend");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -451,11 +451,6 @@ namespace Habit_Buddies.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Habit_Buddies.Data.Entities.FakeFriend", b =>
-                {
-                    b.Navigation("UserFriends");
-                });
-
             modelBuilder.Entity("Habit_Buddies.Data.Entities.Habit", b =>
                 {
                     b.Navigation("Notifications");
@@ -463,9 +458,11 @@ namespace Habit_Buddies.Data.Migrations
 
             modelBuilder.Entity("Habit_Buddies.Data.Entities.User", b =>
                 {
-                    b.Navigation("Habits");
+                    b.Navigation("Friends");
 
-                    b.Navigation("UserFriends");
+                    b.Navigation("FriendsOf");
+
+                    b.Navigation("Habits");
                 });
 #pragma warning restore 612, 618
         }
