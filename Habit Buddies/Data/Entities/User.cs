@@ -8,8 +8,8 @@ namespace Habit_Buddies.Data.Entities
         {
             Habits = new HashSet<Habit>();
         }
-        public int? Experience { get; set; } 
-        public string? Rank { get; set; } = "procrastinator";
+        public int Experience { get; set; }
+        public string Rank { get; set; } = "procrastinator";
         public virtual ICollection<Habit> Habits { get; set; }
 
         public virtual ICollection<UserFriendship> FriendsOf { get; set; }
