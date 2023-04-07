@@ -10,10 +10,10 @@
 <body>
     <div class="text-center">
         <h1 class="display-4">Welcome @User.Identity.Name.Split('@').FirstOrDefault()</h1>
-        <h2>Create a better version of yourself today!</h2>
+        <h3>Create a better version of yourself today!</h3>
     </div>
 
-    <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-around mt-3">
         <button type="button" class="btn btn-outline-secondary mb-3" onclick="location.href='@Url.Action("Create","Habits")'"><i class="bi bi-plus-square"></i> CREATE HABIT</button>
         <button type="button" class="btn btn-outline-secondary mb-3" onclick="location.href='@Url.Action("Create","UserFriendships")'"><i class="bi bi-plus-square"></i> CREATE FRIEND</button>
     </div>
