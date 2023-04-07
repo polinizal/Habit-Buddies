@@ -57,10 +57,10 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IsCompleted)
         </dd>
-        <dt class="col-sm-2">
+        <dt hidden class="col-sm-2">
             @Html.DisplayNameFor(model => model.AllDay)
         </dt>
-        <dd class="col-sm-10">
+        <dd hidden class="col-sm-10">
             @Html.DisplayFor(model => model.AllDay)
         </dd>
         <form method="post" action="/Habits/CompleteToday">
@@ -82,7 +82,7 @@
         </form>
     </dl>
 </div>
-<div class="progress">
+<div class="progress mb-3">
     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: @Model.PercentageCompleted%;"></div>
 </div>
 <div>
