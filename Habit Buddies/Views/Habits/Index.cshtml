@@ -35,9 +35,9 @@
            @* <th>
                 @Html.DisplayNameFor(model => model.IsCompleted)
             </th>*@
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.AllDay)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -65,9 +65,9 @@
             @*<td>
                 @Html.DisplayFor(modelItem => item.IsCompleted)
             </td>*@
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.AllDay)
-            </td>
+            </td>*@
             <td class="crud">   
                  <a asp-action="Edit" asp-route-id="@item.HabitId" class="btn btn-outline-secondary btn-sm"> <i class="bi bi-pencil-square"></i></a>
                  <a asp-action="Details" asp-route-id="@item.HabitId" class="btn btn-outline-secondary btn-sm"> <i class="bi bi-info-square"></i></a>
