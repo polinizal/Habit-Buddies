@@ -27,7 +27,6 @@ namespace Habit_Buddies.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
             var notifications = await _context.Notifications.Include(n => n.Habit).Where(h => h.UserId == userId).ToListAsync(); // Get the notifications created by the current user
-            //var applicationDbContext = _context.Notifications.Include(n => n.Habit).Include(n => n.User);
             return View(notifications);
         }
 
