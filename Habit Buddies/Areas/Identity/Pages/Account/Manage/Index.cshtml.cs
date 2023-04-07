@@ -39,6 +39,8 @@ namespace Habit_Buddies.Areas.Identity.Pages.Account.Manage
         [TempData]
         public string StatusMessage { get; set; }
 
+        public string UserId { get; set; }
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -64,10 +66,11 @@ namespace Habit_Buddies.Areas.Identity.Pages.Account.Manage
         private async Task LoadAsync(User user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
+            var userId = await _userManager.GetUserIdAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
-
+            UserId = userId;
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber
