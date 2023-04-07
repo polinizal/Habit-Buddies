@@ -69,23 +69,6 @@ namespace Habit_Buddies.Controllers
             return View();
         }
 
-        // POST: UserFriendships/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("UserId,UserFriendId")] UserFriendship userFriendship)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(userFriendship);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", userFriendship.UserId);
-        //    ViewData["UserFriendId"] = new SelectList(_context.Users, "Id", "Id", userFriendship.UserFriendId);
-        //    return View(userFriendship);
-        //}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserId,UserFriendId")] UserFriendship userFriendship)
