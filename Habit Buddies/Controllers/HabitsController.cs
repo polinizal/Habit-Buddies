@@ -192,43 +192,6 @@ namespace Habit_Buddies.Controllers
         {
           return (_context.Habits?.Any(e => e.HabitId == id)).GetValueOrDefault();
         }
-        //When habit is completed apply this method (Last day of the habit)
-        //public async Task<IActionResult> Complete(int habitId, string userId)
-        //{
-        //    var habit = await _context.Habits.FindAsync(habitId);
-        //    var user = await _context.Users.FindAsync(userId);
-
-        //    if (habit == null || user == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    user.Experience += 500;
-
-        //    if (user.Experience >= 10000)
-        //    {
-        //        user.Rank = "god";
-        //    }
-        //    else if (user.Experience >= 5000)
-        //    {
-        //        user.Rank = "master";
-        //    }
-        //    else if (user.Experience >= 2000)
-        //    {
-        //        user.Rank = "average";
-        //    }
-        //    else if (user.Experience >= 500)
-        //    {
-        //        user.Rank = "newbie";
-        //    }
-        //    else if (user.Experience >= 0)
-        //    {
-        //        user.Rank = "procrastinator";
-        //    }
-        //    await _context.SaveChangesAsync();
-
-        //    return Ok();
-        //}
         [HttpPost]
         public async Task<IActionResult> Complete(int habitId, string userId)
         {

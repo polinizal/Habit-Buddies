@@ -9,9 +9,11 @@ using Habit_Buddies.Data;
 using Habit_Buddies.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Habit_Buddies.Controllers
 {
+    [Authorize]
     public class UserFriendshipsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -181,25 +183,7 @@ namespace Habit_Buddies.Controllers
             return View(userFriendship);
         }
 
-        // GET: UserFriendships/Delete/5
-        //public async Task<IActionResult> Delete(string id)
-        //{
-        //    if (id == null || _context.UserFriendship == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var userFriendship = await _context.UserFriendship
-        //        .Include(u => u.User)
-        //        .Include(u => u.UserFriend)
-        //        .FirstOrDefaultAsync(m => m.UserId == id);
-        //    if (userFriendship == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(userFriendship);
-        //}
+        
         public async Task<IActionResult> Delete(string userId, string userFriendId)
         {
             var userFriendship = await _context.UserFriendships.FindAsync(userId, userFriendId);
