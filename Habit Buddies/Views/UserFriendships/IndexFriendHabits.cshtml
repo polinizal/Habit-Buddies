@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Friend's Habit List :)</h2>
+<h2 class="mb-3">Friend's Habit List :)</h2>
 
 
 <div class="table-responsive mt-2">
@@ -32,7 +32,7 @@
                 @* <th>
                 @Html.DisplayNameFor(model => model.IsCompleted)
                 </th>*@
-                <th>
+                <th hidden>
                     @Html.DisplayNameFor(model => model.AllDay)
                 </th>
                 <th></th>
@@ -63,7 +63,7 @@
                     @*<td>
                 @Html.DisplayFor(modelItem => item.IsCompleted)
                 </td>*@
-                    <td>
+                    <td hidden>
                         @Html.DisplayFor(modelItem => item.AllDay)
                     </td>
                 </tr>

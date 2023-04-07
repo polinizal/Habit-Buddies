@@ -4,14 +4,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2>Your Friends List :)</h2>
 
-<p>
-    <a asp-action="Create">Add a friend</a>
-</p>
+<button type="button" class="btn btn-outline-secondary my-1 mb-3 btn-sm" onclick="location.href='@Url.Action("Create","UserFriendships")'">
+    <i class="bi bi-plus-square"></i>  ADD A FRIEND
+</button>
 
-<table class="table">
-    <thead>
+<table class="table table-hover table-bordered">
+    <thead class="thread-color">
         <tr>          
             <th>
                 @Html.DisplayNameFor(model => model.UserFriend)

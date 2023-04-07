@@ -4,8 +4,8 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Enter friend's ID</h1>
 
+<h3 class="align-content-center create my-2">Enter friend's ID</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,15 +25,14 @@
                 <span asp-validation-for="UserFriendId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Add" class="btn btn-primary" />
+                <input type="submit" value="Add" class="btn btn-create mb-1" /> |
+                <a asp-action="Index" class="btn btn-info">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
