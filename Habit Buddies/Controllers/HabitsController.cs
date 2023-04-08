@@ -22,14 +22,6 @@ namespace Habit_Buddies.Controllers
         {
             _context = context;
         }
-
-        // GET: Habits
-        //public async Task<IActionResult> Index()
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
-        //    var applicationDbContext = _context.Habits.Where(h => h.UserId == userId); // Get the habits created by the current user
-        //    return View(await applicationDbContext.ToListAsync());
-        //}
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID

@@ -26,9 +26,8 @@ namespace Habit_Buddies.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
-            var notificariions = await _context.Notifications.Include(n => n.Habit).Where(h => h.UserId == userId).ToListAsync(); // Get the notifications created by the current user
-            //var applicationDbContext = _context.Notifications.Include(n => n.Habit).Include(n => n.User);
-            return View(notificariions);
+            var notifications = await _context.Notifications.Include(n => n.Habit).Where(h => h.UserId == userId).ToListAsync(); // Get the notifications created by the current user
+            return View(notifications);
         }
 
         // GET: Notifications/Details/5

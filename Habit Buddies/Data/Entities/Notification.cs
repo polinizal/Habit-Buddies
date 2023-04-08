@@ -9,18 +9,6 @@ namespace Habit_Buddies.Data.Entities
             
         }
 
-        /*Reminder model: The reminder model represents a reminder that a user has set for a habit. It might include properties like:
-
-ReminderId: A unique identifier for the reminder.
-
-HabitId: The ID of the habit for which the reminder is set.
-
-UserId: The ID of the user who created the reminder.
-
-ReminderTime: The time at which the reminder should be sent.
-
-IsEnabled: A flag indicating whether the reminder is currently enabled.*/
-
         public int NotificationId { get; set; }
 
         public string Description { get; set; }
@@ -33,8 +21,6 @@ IsEnabled: A flag indicating whether the reminder is currently enabled.*/
         public bool IsEnabled { get; set; }
         public int HabitId { get; set; }
         public virtual Habit? Habit { get; set; }
-
-
 
     }
 }
